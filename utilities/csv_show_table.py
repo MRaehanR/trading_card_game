@@ -15,8 +15,8 @@ def csv_show_table(filepath):
     for row in data[1:]:
         print(" | ".join(row))
         
-def csv_show_table_tabulate(filepath):
-    data = csv_read_list(filepath)
+def csv_show_table_tabulate(argument):
+    data = csv_read_list(argument) if type(argument) == str else argument
     header = data[0]
     
     data.pop(0)
