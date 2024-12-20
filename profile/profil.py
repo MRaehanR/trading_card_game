@@ -37,24 +37,3 @@ def profil():
     card_users_filtered[0] = ["card_name", "stars", "created_at", "updated_at"]
     
     csv_show_table_tabulate(card_users_filtered)
-
-    menu_profile()
-
-def menu_profile():
-    print_menu("Profile", ["Back", "Logout"])
-    chosenMenu = int(input("Option: "))
-
-    if chosenMenu == 1:
-        print("MainMenu")
-    elif chosenMenu == 0:
-        print("See You Later!")
-        exit() 
-    else:
-        print_error("Choose the correct number!")
-
-def print_menu(title, options) :
-    print(f"\n\n{title}")
-    for key, option in enumerate(options, 1) :
-
-        if key == len (options): key = 0
-        print(f"[{key}] {option}")

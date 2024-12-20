@@ -17,7 +17,7 @@ def register():
             username_exists = True
 
     if not username_exists:
-        password = int(input("Enter Your Password: "))
+        password = str(input("Enter Your Password: "))
         id = get_current_id(USER_CSV)
         now = datetime.datetime.now() 
         formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")

@@ -1,9 +1,13 @@
 from utilities.csv_show_table import *
+from utilities.find_my_cards import *
+from utilities.csv_read_list import *
 from market_features.sell import *
 from market_features.cancel import *
 from market_features.buy import *
-from utilities.find_my_cards import *
-from utilities.csv_read_list import *
+from authentications.register import *
+from profile.profil import *
+from freegift.redeem_card import *
+from freegift.claim_gold import *
 
 def print_menu(title, options) :
     print(f"\n\n{title}")
@@ -18,7 +22,7 @@ def login_and_register():
     chosenMenu = int(input("Option: "))
     
     if chosenMenu == 1:
-        login()
+        register()
     elif chosenMenu == 2:
         register()
     elif chosenMenu == 0:
@@ -28,7 +32,7 @@ def login_and_register():
          print_error("Choose the correct number!")
 
 def main_menu():
-    print_menu("Main Menu", ["Sell Card", "Buy Card", "Porfile", "Free Gift", "Logout"])
+    print_menu("Main Menu", ["Sell Card", "Buy Card", "Profile", "Free Gift", "Logout"])
     chosenMenu = int(input("Option: "))
     print("\n")
 
@@ -54,24 +58,37 @@ def sell_card():
     if chosenMenu == 1:
         print("\n\nMarket")
         market_card = csv_read_list(CARD_MARKET_CSV)
-        market_card = list(map(lambda card: , market_card))
+        csv_show_table_tabulate(market_card)
+        
         print("\n\nMy Card")
-        my_card = find_my_cards()
-        csv_show_table_tabulate(my_card)
-        data_sell_card = []
-        for card in market_card:
-            for cards in my_card:
-                if card [1] == cards [0]:
-                    data_sell_card.append(card)
-        print(data_sell_card)
+        show_my_cards()
+        
         sell()
     elif chosenMenu == 2:
+        show_my_cards()
         cancel()
     elif chosenMenu == 0:
         main_menu()
     else: 
         print_error("Choose the correct number!")
 
+def show_my_cards():
+    cards = csv_read_list(CARDS_CSV)
+    my_cards = find_my_cards()
+        
+    # Ubah Bintang
+    for i in range(len(my_cards)):
+        if my_cards[i][1] == str(USER_ID):
+            my_cards[i][3] = int(my_cards[i][3])*"⭐"
+
+    # Ubah Nama Kartu
+    for i in range(len(my_cards)):
+        for j in range(len(cards)):
+            if my_cards[i][2] == cards[j][0]:
+                my_cards[i][2] = cards[j][1]
+    for i in range(len(my_cards)):
+        my_cards[i].pop(1)
+    csv_show_table_tabulate(my_cards)
 
 def buy_card():
     print_menu("Buy Card", ["Buy Card", "Back"])
@@ -91,6 +108,7 @@ def buy_card():
 
 
 def profile():
+    profil()
     print_menu("Profile", ["Back", "Logout"])
     chosenMenu = int(input("Option: "))
 
@@ -108,11 +126,13 @@ def free_gift():
     chosenMenu = int(input("Option: "))
 
     if chosenMenu == 1:
-        redeem_card()
-    elif chosenMenu == 2:
-        redeem_gold()
+        reedem_card()
+    elif chosenMenu == 0:
+        claim_gold()
     else:
         print_error("Choose the correct number!") 
+        
+    main_menu()
 
 
         
