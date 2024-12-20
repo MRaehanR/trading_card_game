@@ -9,12 +9,12 @@ def login():
         username = input("Enter username:")
         password = input("Enter password:")
 
-        data = csv_read_list(constants.USER_CSV)
+        users = csv_read_list(constants.USER_CSV)
 
-        for i in range (len(data)):
-            if username in data[i] and password in data[i]:
+        for i in range (len(users)):
+            if username in users[i] and password in users[i]:
                 is_login_success = True
-                constants.USER_ID = data[i][0]
+                constants.USER_ID = users[i][0]
         
         if not is_login_success:
             print("Login failed, please try again.")

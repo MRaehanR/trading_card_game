@@ -32,6 +32,9 @@ def register():
         ]
 
         csv_write(new_user, constants.USER_CSV, "row", "a")
+        
+        constants.USER_ID = id
+                
         print("Registration Successful")
     return
 

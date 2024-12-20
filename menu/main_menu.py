@@ -24,15 +24,16 @@ def login_and_register():
     
     if chosenMenu == 1:
         login()
+        main_menu()
     elif chosenMenu == 2:
         register()
+        main_menu()
     elif chosenMenu == 0:
         print("See You Later!")
         exit()
     else:
          print_error("Choose the correct number!")
-         
-    main_menu()
+         main_menu()
 
 def main_menu():
     print_menu("Main Menu", ["Sell Card", "Buy Card", "Profile", "Free Gift", "Logout"])
