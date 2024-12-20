@@ -1,4 +1,4 @@
-from constants import *
+import constants
 from utilities.print_with_color import *
 from utilities.csv_read_list import *
 from utilities.csv_write import *
@@ -6,7 +6,7 @@ from utilities.find_my_cards import *
 
 
 def cancel() :
-   cards_for_sale = csv_read_list(CARD_MARKET_CSV)
+   cards_for_sale = csv_read_list(constants.CARD_MARKET_CSV)
 
    my_cards_for_sale = cards_for_sale.copy()
    my_cards_for_sale.pop(0)
@@ -28,7 +28,7 @@ def cancel() :
          if confirm == "y" :
             cards_for_sale = list(filter(lambda card: not card[0].isnumeric or str(card[0]) != str(card_id), cards_for_sale))
 
-            csv_write(cards_for_sale, CARD_MARKET_CSV, "rows", "w")
+            csv_write(cards_for_sale, constants.CARD_MARKET_CSV, "rows", "w")
 
             print_success("\nSuccessfully canceled the sale.")
       else :

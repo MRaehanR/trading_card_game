@@ -5,6 +5,7 @@ from market_features.sell import *
 from market_features.cancel import *
 from market_features.buy import *
 from authentications.register import *
+from authentications.login import *
 from profile.profil import *
 from freegift.redeem_card import *
 from freegift.claim_gold import *
@@ -22,7 +23,7 @@ def login_and_register():
     chosenMenu = int(input("Option: "))
     
     if chosenMenu == 1:
-        register()
+        login()
     elif chosenMenu == 2:
         register()
     elif chosenMenu == 0:
@@ -30,6 +31,8 @@ def login_and_register():
         exit()
     else:
          print_error("Choose the correct number!")
+         
+    main_menu()
 
 def main_menu():
     print_menu("Main Menu", ["Sell Card", "Buy Card", "Profile", "Free Gift", "Logout"])
@@ -57,7 +60,7 @@ def sell_card():
 
     if chosenMenu == 1:
         print("\n\nMarket")
-        market_card = csv_read_list(CARD_MARKET_CSV)
+        market_card = csv_read_list(constants.CARD_MARKET_CSV)
         csv_show_table_tabulate(market_card)
         
         print("\n\nMy Card")
@@ -71,14 +74,15 @@ def sell_card():
         main_menu()
     else: 
         print_error("Choose the correct number!")
+    main_menu()
 
 def show_my_cards():
-    cards = csv_read_list(CARDS_CSV)
+    cards = csv_read_list(constants.CARDS_CSV)
     my_cards = find_my_cards()
         
     # Ubah Bintang
     for i in range(len(my_cards)):
-        if my_cards[i][1] == str(USER_ID):
+        if my_cards[i][1] == str(constants.USER_ID):
             my_cards[i][3] = int(my_cards[i][3])*"⭐"
 
     # Ubah Nama Kartu
@@ -96,7 +100,7 @@ def buy_card():
 
     if chosenMenu == 1:
         print ("\n\nMarket")
-        csv_show_table_tabulate(CARD_MARKET_CSV)
+        csv_show_table_tabulate(constants.CARD_MARKET_CSV)
         print("\n\nMy Card")
         my_card = find_my_cards()
         csv_show_table_tabulate(my_card)
@@ -105,6 +109,8 @@ def buy_card():
         main_menu()
     else:
        print_error("Choose the correct number!") 
+       
+    main_menu()
 
 
 def profile():

@@ -21,4 +21,4 @@ def csv_show_table_tabulate(argument):
     
     data.pop(0)
     
-    print(tabulate(data, headers=header, tablefmt="grid",maxcolwidths=[None, None, 30]))
+    print(tabulate(data, headers=header, tablefmt="grid"))

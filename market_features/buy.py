@@ -1,6 +1,6 @@
 import datetime
 
-from constants import *
+import constants
 from utilities.print_with_color import *
 from utilities.csv_show_table import *
 from utilities.csv_read_list import *
@@ -9,11 +9,11 @@ from utilities.csv_write import *
 from utilities.find_my_cards import *
 
 def buy() :
-   cards_for_sale = csv_read_list(CARD_MARKET_CSV)
-   accounts = csv_read_list(USER_CSV)
+   cards_for_sale = csv_read_list(constants.CARD_MARKET_CSV)
+   accounts = csv_read_list(constants.USER_CSV)
 
    # Get User Information
-   my_account = list(filter(lambda account: int(account[0]) == int(USER_ID), enumerate(accounts)))[0]
+   my_account = list(filter(lambda account: int(account[0]) == int(constants.USER_ID), enumerate(accounts)))[0]
 
    # Get All My Crads id
    my_cards_id = find_my_cards()
@@ -51,7 +51,7 @@ def buy() :
             formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
          
             # Get Purchased Card Informations
-            all_user_cards = csv_read_list(CARD_USER_CSV)
+            all_user_cards = csv_read_list(constants.CARD_USER_CSV)
             purchased_card_info = list(filter(lambda purchased: purchased[1][0].isnumeric() and int(purchased[1][0]) == int(card[1]), enumerate(all_user_cards)))[0]
 
             # # Update Seller Account
@@ -71,7 +71,7 @@ def buy() :
             accounts[my_account[0]] = my_account[1]
 
             # Update Card Ownership 
-            purchased_card_info[1][1] = USER_ID
+            purchased_card_info[1][1] = constants.USER_ID
             all_user_cards[purchased_card_info[0]] = purchased_card_info[1]
 
             # Delete Sales Data
@@ -81,9 +81,9 @@ def buy() :
 
             # Update Data on the Table
             data_to_be_updated = [
-               [accounts, USER_CSV],
-               [all_user_cards, CARD_USER_CSV],
-               [cards_for_sale, CARD_MARKET_CSV]
+               [accounts, constants.USER_CSV],
+               [all_user_cards, constants.CARD_USER_CSV],
+               [cards_for_sale, constants.CARD_MARKET_CSV]
             ]
 
             for data in data_to_be_updated :

@@ -1,6 +1,6 @@
 import datetime
 
-from constants import *
+import constants
 from utilities.print_with_color import *
 from utilities.csv_read_list import *
 from utilities.get_current_id import *
@@ -33,7 +33,7 @@ def sell() :
                print_error("\nYour chance is over!!")
          else :
             # Checks if the entered card ID already exists in the market data
-            cards_market = csv_read_list(CARD_MARKET_CSV)
+            cards_market = csv_read_list(constants.CARD_MARKET_CSV)
             cards_market.pop(0)
             is_exist = True if list(filter(lambda card: int(card[1]) == card_id, cards_market)) else False
 
@@ -50,7 +50,7 @@ def sell() :
                if confirm == "y" :
                   now = datetime.datetime.now() 
                   formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
-                  id = get_current_id(CARD_MARKET_CSV)
+                  id = get_current_id(constants.CARD_MARKET_CSV)
                   sell = [
                      id,
                      card_id,
@@ -69,7 +69,7 @@ def sell() :
                      method_write = "rows"
                      file_handling = "w"
                   
-                  csv_write(sell, CARD_MARKET_CSV, method_write, file_handling)
+                  csv_write(sell, constants.CARD_MARKET_CSV, method_write, file_handling)
 
                   print_success("The card was successfully uploaded to the card market")
    else :

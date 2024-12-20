@@ -1,21 +1,21 @@
-from constants import *
+import constants
 from utilities.csv_read_list import *
 from utilities.csv_show_table import *
 
 def profil():
-    users = csv_read_list(USER_CSV)
-    cards = csv_read_list(CARDS_CSV)
+    users = csv_read_list(constants.USER_CSV)
+    cards = csv_read_list(constants.CARDS_CSV)
 
     for i in range(len(users)):
-        if users[i][0] == str(USER_ID):
+        if users[i][0] == str(constants.USER_ID):
             user_data = users[i]
 
-    card_users = csv_read_list(CARD_USER_CSV)
+    card_users = csv_read_list(constants.CARD_USER_CSV)
     card_users_filtered = [card_users[0]]
 
     # Ubah Bintang
     for i in range(len(card_users)):
-        if card_users[i][1] == str(USER_ID):
+        if card_users[i][1] == str(constants.USER_ID):
             card_users[i][3] = int(card_users[i][3])*"⭐"
             card_users_filtered.append(card_users[i])
 
