@@ -32,8 +32,8 @@ def login_and_register():
         print("See You Later!")
         exit()
     else:
-         print_error("Choose the correct number!")
-         main_menu()
+        print_error("Choose the correct number!")
+        main_menu()
 
 def main_menu():
     print_menu("Main Menu", ["Sell Card", "Buy Card", "Profile", "Free Gift", "Logout"])
@@ -55,21 +55,55 @@ def main_menu():
     else:
         print_error("Choose the correct number!")
 
+def detail_market_cards(type) :
+    cards_market = csv_read_list(constants.CARD_MARKET_CSV)
+    cards        = csv_read_list(constants.CARDS_CSV)
+    cards_user   = csv_read_list(constants.CARD_USER_CSV)
+    users        = csv_read_list(constants.USER_CSV)
+
+    details = [
+        ["sell_id", "card_name", "star", "price", "seller", "created_at"]
+    ]
+
+    cards_market.pop(0)
+    for market in cards_market :
+        card_user_detail = list(filter(lambda card: card[0] == market[1], cards_user))[0]
+        seller_detail    = list(filter(lambda user: user[0] == card_user_detail[1], users))[0]
+        name    = list(filter(lambda card: card[0] == card_user_detail[2], cards))[0][1]
+        star    = int(card_user_detail[3])*"⭐"
+
+        detail = [
+            market[0],
+            name,
+            star,
+            market[2],
+            seller_detail[1],
+            market[3]
+        ]
+
+        # Get the details of the card that the user is selling or that the user can buy.
+        if (type == "sell" and int(seller_detail[0]) == constants.USER_ID) or (type == "buy" and int(seller_detail[3]) >= int(market[2])) :
+            details.append(detail)
+    
+    csv_show_table_tabulate(details)
+
 def sell_card():
+    print("\n\nMarket")
+    detail_market_cards("sell")
+    
+    print("\n\nMy Card")
+    show_my_cards()
+
     print_menu("Sell Card", ["Sell Card", "Cancel Sell Card", "Back"])
     chosenMenu = int(input("Option: "))
 
-    if chosenMenu == 1:
-        print("\n\nMarket")
-        market_card = csv_read_list(constants.CARD_MARKET_CSV)
-        csv_show_table_tabulate(market_card)
-        
-        print("\n\nMy Card")
+    if chosenMenu == 1: 
+        print("\n\nMy Cards")     
         show_my_cards()
-        
         sell()
     elif chosenMenu == 2:
-        show_my_cards()
+        print("\n\nMy cards that are currently for sale.")
+        detail_market_cards("sell")
         cancel()
     elif chosenMenu == 0:
         main_menu()
@@ -96,21 +130,22 @@ def show_my_cards():
     csv_show_table_tabulate(my_cards)
 
 def buy_card():
+    print("\n\nMarket")
+    detail_market_cards("buy")
+    
+    print("\n\nMy Card")
+    show_my_cards()
+
     print_menu("Buy Card", ["Buy Card", "Back"])
     chosenMenu = int(input("Option: "))
 
     if chosenMenu == 1:
-        print ("\n\nMarket")
-        csv_show_table_tabulate(constants.CARD_MARKET_CSV)
-        print("\n\nMy Card")
-        my_card = find_my_cards()
-        csv_show_table_tabulate(my_card)
         buy()
     elif chosenMenu == 0:
         main_menu()
     else:
-       print_error("Choose the correct number!") 
-       
+        print_error("Choose the correct number!") 
+
     main_menu()
 
 
