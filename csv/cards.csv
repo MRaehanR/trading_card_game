@@ -2,12 +2,12 @@ id,name,spread,max_spread,created_at
 1,Bulbasaur,2,10,2024-12-02 00:08:52
 2,Ivysaur,2,3,2024-12-02 00:08:52
 3,Venusaur,2,10,2024-12-02 00:08:52
-3,VenusaurMega Venusaur,1,10,2024-12-02 00:08:52
-4,Charmander,1,10,2024-12-02 00:08:52
-5,Charmeleon,1,10,2024-12-02 00:08:52
-6,Charizard,1,10,2024-12-02 00:08:52
-6,CharizardMega Charizard X,1,10,2024-12-02 00:08:52
-7,Squirtle,1,10,2024-12-02 00:08:52
-8,Wartortle,1,10,2024-12-02 00:08:52
-9,Blastoise,1,10,2024-12-02 00:08:52
-10,Caterpie,1,10,2024-12-02 00:08:52
+4,VenusaurMega Venusaur,1,10,2024-12-02 00:08:52
+5,Charmander,1,10,2024-12-02 00:08:52
+6,Charmeleon,1,10,2024-12-02 00:08:52
+7,Charizard,1,10,2024-12-02 00:08:52
+8,CharizardMega Charizard X,1,10,2024-12-02 00:08:52
+9,Squirtle,1,10,2024-12-02 00:08:52
+10,Wartortle,1,10,2024-12-02 00:08:52
+11,Blastoise,1,10,2024-12-02 00:08:52
+12,Caterpie,1,10,2024-12-02 00:08:52
