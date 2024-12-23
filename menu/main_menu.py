@@ -23,17 +23,21 @@ def login_and_register():
     chosenMenu = int(input("Option: "))
     
     if chosenMenu == 1:
-        login()
-        main_menu()
+        if login():
+            main_menu()
+        else:
+            login_and_register()
     elif chosenMenu == 2:
-        register()
-        main_menu()
+        if register():
+            main_menu()
+        else:
+            login_and_register()
     elif chosenMenu == 0:
         print("See You Later!")
         exit()
     else:
         print_error("Choose the correct number!")
-        main_menu()
+        login_and_register()
 
 def main_menu():
     print_menu("Main Menu", ["Sell Card", "Buy Card", "Profile", "Free Gift", "Logout"])
@@ -88,7 +92,7 @@ def detail_market_cards(type) :
     csv_show_table_tabulate(details)
 
 def sell_card():
-    print("\n\nMarket")
+    print("\n\My Cards in Market")
     detail_market_cards("sell")
     
     print("\n\nMy Card")
