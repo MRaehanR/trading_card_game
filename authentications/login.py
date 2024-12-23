@@ -1,5 +1,5 @@
-from utilities.csv_read_list import *
 import constants
+from utilities.csv_read_list import *
 
 def login():
     is_login_success = False
@@ -13,6 +13,7 @@ def login():
 
         for i in range (len(users)):
             if username == users[i][1] and password == users[i][2]:
+                print("asdasd")
                 is_login_success = True
                 constants.USER_ID = users[i][0]
         
@@ -23,5 +24,7 @@ def login():
     
     if is_login_success:
         print("Login succesfully!")
+        return True
     else:
         print("Maximum attempts login, access denied.")
+        return False

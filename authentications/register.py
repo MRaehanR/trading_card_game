@@ -17,6 +17,7 @@ def register():
             if username in i:
                 print("Username already exists")
                 username_exists = True
+                return False
 
     if not username_exists:
         password = str(input("Enter Your Password: "))
@@ -38,7 +39,7 @@ def register():
         constants.USER_ID = id
                 
         print("Registration Successful")
-    return
+        return True
 
         
 
