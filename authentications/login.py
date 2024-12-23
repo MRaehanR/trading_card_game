@@ -12,7 +12,7 @@ def login():
         users = csv_read_list(constants.USER_CSV)
 
         for i in range (len(users)):
-            if username in users[i] and password in users[i]:
+            if username == users[i] and password == users[i]:
                 is_login_success = True
                 constants.USER_ID = users[i][0]
         
