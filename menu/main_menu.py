@@ -82,7 +82,7 @@ def detail_market_cards(type) :
         ]
 
         # Get the details of the card that the user is selling or that the user can buy.
-        if (type == "sell" and int(seller_detail[0]) == constants.USER_ID) or (type == "buy" and int(seller_detail[3]) >= int(market[2])) :
+        if (type == "sell" and int(seller_detail[0]) == int(constants.USER_ID)) or (type == "buy" and int(seller_detail[3]) >= int(market[2])) :
             details.append(detail)
     
     csv_show_table_tabulate(details)

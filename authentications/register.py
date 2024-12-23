@@ -11,10 +11,12 @@ def register():
     data = csv_read_list(constants.USER_CSV)
     username_exists = False
     username = str(input("Enter Username: "))
-    for i in data:
-        if username in i:
-            print("Username already exists")
-            username_exists = True
+    
+    if len(data) == 0:
+        for i in data:
+            if username in i:
+                print("Username already exists")
+                username_exists = True
 
     if not username_exists:
         password = str(input("Enter Your Password: "))
