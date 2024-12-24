@@ -29,7 +29,7 @@ def register():
             id, 
             username,
             password,
-            0,
+            100,
             "",
             formatted_date,
         ]
