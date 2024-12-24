@@ -13,7 +13,6 @@ def login():
 
         for i in range (len(users)):
             if username == users[i][1] and password == users[i][2]:
-                print("asdasd")
                 is_login_success = True
                 constants.USER_ID = users[i][0]
         
